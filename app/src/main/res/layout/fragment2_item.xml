@@ -1,11 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_right_fragment_back"
+            android:layout_width="50sp"
+            android:layout_height="30sp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/rightback" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="设置"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/xian"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_below="@+id/ll2"
+        android:background="#F4F5F6" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="清除缓存"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="7.67M"
+            android:textColor="#ACACAC"
+            android:textSize="15dp" />
+    </RelativeLayout>
+    <TextView
+        android:background="#F4F5F6"
+        android:layout_width="match_parent"
+        android:layout_height="2sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="字体大小"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="中"
+            android:textColor="#ACACAC"
+            android:textSize="15dp" />
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/fl2_item"
-        android:text="我是fragment2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:background="#F4F5F6"
+        android:layout_width="match_parent"
+        android:layout_height="2sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="列表显示摘要"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="30sp"
+            android:layout_marginTop="4dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/rightoff" />
+
+    </RelativeLayout>
+    <TextView
+        android:background="#F4F5F6"
+        android:layout_width="match_parent"
+        android:layout_height="2sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="非WIFI网络流量"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="极省流量(不下载图)"
+            android:textColor="#ACACAC"
+            android:textSize="15dp" />
+    </RelativeLayout>
+    <TextView
+        android:background="#F4F5F6"
+        android:layout_width="match_parent"
+        android:layout_height="2sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="非WIFI网络播放提醒"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="提醒一次"
+            android:textColor="#ACACAC"
+            android:textSize="15dp" />
+    </RelativeLayout>
+    <TextView
+        android:background="#F4F5F6"
+        android:layout_width="match_parent"
+        android:layout_height="2sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="推送通知"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_marginTop="4dp"
+            android:layout_height="30sp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/on" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_below="@+id/ll2"
+        android:background="#F4F5F6" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="离线下载"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/list" />
+    </RelativeLayout>
+    <TextView
+        android:background="#F4F5F6"
+        android:layout_width="match_parent"
+        android:layout_height="2sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/banben"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="检查版本"
+            android:textColor="#363636"
+            android:textSize="15dp" />
+
+        梁佳宁 2017/8/31 20:05:28
+
+        <ImageView
+            android:layout_width="10sp"
+            android:layout_height="10sp"
+            android:layout_alignRight="@+id/banben"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="-5dp"
+            android:src="@drawable/redots" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="6.3.2"
+            android:textColor="#ACACAC"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="今日头条用户协议"
+            android:textColor="#015B99" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="头条网 toutiao.com
+"
+            android:textColor="#999999" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="v6.3.2 Build 385a104_20170817"
+            android:textColor="#999999" />
+
+    </RelativeLayout>
+
+
 </LinearLayout>
