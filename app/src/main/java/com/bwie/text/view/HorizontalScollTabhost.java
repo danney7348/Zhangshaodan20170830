@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
@@ -96,13 +97,14 @@ public class HorizontalScollTabhost extends LinearLayout implements ViewPager.On
         layout_menu.setBackgroundColor(color);
         for (int i = 0; i < fragmentList.size(); i++) {
             String s = list.get(i);
-            TextView tv = (TextView) View.inflate(mContext,R.layout.news_top_tv_item,null);
+            final TextView tv = (TextView) View.inflate(mContext,R.layout.news_top_tv_item,null);
             tv.setText(s);
             final int finalI = i;
             tv.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     viewpager.setCurrentItem(finalI);
+                    moveItemToCenter(tv);
                 }
             });
             layout_menu.addView(tv);
@@ -110,6 +112,16 @@ public class HorizontalScollTabhost extends LinearLayout implements ViewPager.On
         }
         topViews.get(0).setSelected(true);
     }
+    private void moveItemToCenter(TextView tv) {
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int screenWidth = dm.widthPixels;
+        int[] locations = new int[2];
+        tv.getLocationInWindow(locations);
+        int rbWidth = tv.getWidth();
+        hscrollview.smoothScrollBy((locations[0] + rbWidth / 2 - screenWidth / 2),
+                0);
+    }
+
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -128,7 +140,7 @@ public class HorizontalScollTabhost extends LinearLayout implements ViewPager.On
                 }
             }
         }
-
+        moveItemToCenter(topViews.get(position));
     }
 
     @Override

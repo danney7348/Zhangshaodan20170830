@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bwie.text.MessageLoginActivity;
+import com.bwie.text.QQloginActivity;
 import com.bwie.text.R;
 
 /**
@@ -31,6 +33,14 @@ public class LeftFragment extends Fragment {
             mRootView = View.inflate(getContext(), R.layout.fragment1_item,null);
         }
         login_style = mRootView.findViewById(R.id.login_style);
+        ImageView qq = mRootView.findViewById(R.id.iv_qq);
+        qq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),QQloginActivity.class);
+                startActivity(intent);
+            }
+        });
         login_style.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
