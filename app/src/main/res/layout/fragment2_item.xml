@@ -114,6 +114,7 @@
         android:layout_height="2sp" />
 
     <RelativeLayout
+        android:id="@+id/rl_notWifi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -196,6 +197,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rl_lixianxiazai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

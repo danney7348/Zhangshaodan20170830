@@ -1,11 +1,14 @@
 package com.bwie.text;
 
 import android.content.ComponentCallbacks;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bwie.text.adapter.MyApadter;
 import com.bwie.text.bean.CategoryBean;
@@ -33,7 +36,7 @@ import view.xlistview.XListView;
  * 实现新闻的页面
  */
 @ContentView(R.layout.activity_main)
-public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @ViewInject(R.id.lv)
     XListView lv;
@@ -42,7 +45,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     ImageView shezhi;
     @ViewInject(R.id.tou_iv_user)
     ImageView user;
-
 
     private HorizontalScollTabhost mTabhost;
     private List<Fragment> fragmentList;
@@ -57,6 +59,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         mTabhost = (HorizontalScollTabhost) findViewById(R.id.tabhost);
         //使用post请求
         initView();
+
         initMenu();
         initData();
     }
@@ -89,18 +92,17 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     }
 
     private void initMenu() {
-
-        setBehindContentView(R.layout.left_fragment_content);
+        //定义一个左侧空的布局
+        menu = new SlidingMenu(this);
+        menu.setMenu(R.layout.left_fragment_content);
         getSupportFragmentManager().beginTransaction().replace(R.id.left_fl1, new LeftFragment()).commit();
-        menu = getSlidingMenu();
         menu.setMode(SlidingMenu.LEFT_RIGHT);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        menu.setBehindOffsetRes(R.dimen.BehindOffsetRes);
+        menu.setBehindOffsetRes(R.dimen.BehindOffsetRes);//设置侧滑菜单的宽度
         menu.setSecondaryMenu(R.layout.right_fragment_content);
         getSupportFragmentManager().beginTransaction().replace(R.id.left_fl2, new RightFragment()).commit();
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
     }
-
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
