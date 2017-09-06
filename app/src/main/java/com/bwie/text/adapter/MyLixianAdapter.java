@@ -27,21 +27,19 @@ public class MyLixianAdapter extends RecyclerView.Adapter<MyLixianAdapter.MyView
 
         MyViewHolder myViewHolder = new MyViewHolder(view);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onItemClickListener.onItemClickListener((Integer) view.getTag(), view);
-            }
-        });
-
         return myViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.nametv.setText(list.get(position).name);
-        holder.itemView.setTag(position);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onItemClickListener(position, holder.itemView);
+            }
+        });
     }
 
     @Override

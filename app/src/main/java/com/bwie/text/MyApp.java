@@ -13,6 +13,8 @@ import com.umeng.socialize.UMShareAPI;
 
 import org.xutils.x;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * 作者： 张少丹
  * 时间：  2017/8/30.
@@ -28,7 +30,8 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         UMShareAPI.get(this);
         mContext = this;
         MobSDK.init(this, Constans.KEY, Constans.SECRET);

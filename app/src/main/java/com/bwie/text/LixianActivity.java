@@ -10,8 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
-
 import com.bwie.text.adapter.MyLixianAdapter;
 import com.bwie.text.bean.Api;
 import com.bwie.text.bean.Catogray;
