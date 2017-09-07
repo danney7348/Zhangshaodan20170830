@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.andy.library.ChannelActivity;
+import com.andy.library.ChannelBean;
 import com.bwie.text.adapter.MyApadter;
 import com.bwie.text.bean.CategoryBean;
 import com.bwie.text.bean.News;
@@ -50,10 +52,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Fragment> fragmentList;
     private List<String> beans;
     private SlidingMenu menu;
+    private ImageView jiahao;
+    private List<ChannelBean> list;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sendBroadcast(new Intent("kson"));
         //使用每个控件的声明和初始化必须用IOC反转控制，通过注解的形式初始化View
         x.view().inject(this);
         mTabhost = (HorizontalScollTabhost) findViewById(R.id.tabhost);
@@ -62,11 +67,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initMenu();
         initData();
+        jiahao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                list = new ArrayList<ChannelBean>();
+                ChannelBean channelBean;
+                for (int i = 0; i < beans.size(); i++) {
+                    if(beans.get(i).equals("体育")||beans.get(i).equals("娱乐")){
+                        channelBean = new ChannelBean(beans.get(i),true);
+                    }else{
+                        channelBean = new ChannelBean(beans.get(i),false);
+                    }
+                    list.add(channelBean);
+                }
+                ChannelActivity.startChannelActivity(MainActivity.this, list);
+            }
+        });
     }
 
     private void initView() {
         user.setOnClickListener(this);
         shezhi.setOnClickListener(this);
+        jiahao = mTabhost.findViewById(R.id.iv_jiahao);
     }
 
     private void initData() {

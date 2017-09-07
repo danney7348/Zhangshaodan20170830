@@ -19,6 +19,7 @@ import com.bwie.text.MainActivity;
 import com.bwie.text.MessageLoginActivity;
 import com.bwie.text.QQloginActivity;
 import com.bwie.text.R;
+import com.example.city_picker.CityListActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -32,6 +33,7 @@ public class LeftFragment extends Fragment {
     private View mRootView;
     private TextView login_style;
     private LinearLayout night;
+    private TextView tv_xitongshezhi;
 
     @Nullable
     @Override
@@ -44,6 +46,14 @@ public class LeftFragment extends Fragment {
         login_style = mRootView.findViewById(R.id.login_style);
         ImageView qq = mRootView.findViewById(R.id.iv_qq);
         night = mRootView.findViewById(R.id.ll_tv_night);
+        tv_xitongshezhi = mRootView.findViewById(R.id.tv_xitongshezhi);
+        tv_xitongshezhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                CityListActivity.startCityActivityForResult(getActivity());
+            }
+        });
         night.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

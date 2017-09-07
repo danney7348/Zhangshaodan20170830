@@ -1,7 +1,9 @@
 package com.bwie.text.fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,7 @@ public class RightFragment extends Fragment {
     private View mRootView;
     private RelativeLayout lixianxiazai;
     private RelativeLayout notwifi;
+    public static SharedPreferences sp;
 
     @Nullable
     @Override
@@ -39,6 +42,7 @@ public class RightFragment extends Fragment {
         }
         ImageView back = mRootView.findViewById(R.id.iv_right_fragment_back);
         lixianxiazai = mRootView.findViewById(R.id.rl_lixianxiazai);
+
         notwifi = mRootView.findViewById(R.id.rl_notWifi);
         notwifi.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,14 +52,15 @@ public class RightFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        sp = getActivity().getSharedPreferences("con", Context.MODE_PRIVATE);
                         if (i == 0) {
 
                             //需要存储本地状态，选择的什么网络流量节省方式，"wifi"="hasnet"，加载大图
-
+                            boolean b = sp.edit().putBoolean("b", true).commit();
 
                         } else if (i == 1) {
                             //需要存储本地状态，选择的什么网络流量节省方式，"wifi"="nonet"，不加载图
-
+                            boolean b = sp.edit().putBoolean("b", false).commit();
                         }
 
                         dialogInterface.dismiss();

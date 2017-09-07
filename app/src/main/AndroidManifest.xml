@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bwie.text">
+    package="com.bwie.text"
+    android:versionCode="303"
+    android:versionName="3.0.3"
+    >
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23" />
+
+    <!-- Required -->
     <permission
         android:name="com.bwie.text.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
+
     <uses-permission android:name="com.bwie.text.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -58,6 +65,7 @@
             android:process=":mult"
             android:exported="false">
             <intent-filter>
+
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
                 <action android:name="cn.jpush.android.intent.PushService" />
@@ -69,6 +77,10 @@
             android:enabled="true"
             android:exported="false">
             <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
                 <category android:name="com.bwie.text" />
             </intent-filter>
@@ -116,6 +128,8 @@
         <activity android:name=".MessageLoginActivity" />
         <activity android:name=".QQloginActivity" />
         <activity android:name=".LixianActivity"></activity>
+        <activity android:name="com.andy.library.ChannelActivity"/>
+        <activity android:name="com.example.city_picker.CityListActivity"/>
     </application>
 
 </manifest>

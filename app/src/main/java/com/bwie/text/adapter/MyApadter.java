@@ -1,6 +1,7 @@
 package com.bwie.text.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.bwie.text.R;
 import com.bwie.text.bean.News;
+import com.bwie.text.fragment.RightFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.ByteArrayOutputStream;
@@ -27,6 +29,7 @@ public class MyApadter extends BaseAdapter{
     private List<News.ResultBean.DataBean> data;
     private final int atype = 0;
     private final int btype = 1;
+    private SharedPreferences con;
 
     public MyApadter(Context context, List<News.ResultBean.DataBean> data) {
         this.context = context;
@@ -126,7 +129,12 @@ public class MyApadter extends BaseAdapter{
                 holder1.tv_title1.setText(data.get(i).getTitle());
                 holder1.tv_name1.setText(data.get(i).getAuthor_name());
                 holder1.tv_time1.setText(data.get(i).getDate());
-                ImageLoader.getInstance().displayImage(data.get(i).getThumbnail_pic_s(),holder1.iv1);
+
+                con = context.getSharedPreferences("con", Context.MODE_PRIVATE);
+                boolean b = con.getBoolean("b", true);
+                if(b){
+                    ImageLoader.getInstance().displayImage(data.get(i).getThumbnail_pic_s(),holder1.iv1);
+                }
                 break;
 
             case btype:
@@ -134,7 +142,12 @@ public class MyApadter extends BaseAdapter{
                 holder2.tv_title2.setText(data.get(i).getTitle());
                 holder2.tv_name2.setText(data.get(i).getAuthor_name());
                 holder2.tv_time2.setText(data.get(i).getDate());
-                ImageLoader.getInstance().displayImage(data.get(i).getThumbnail_pic_s(),holder2.iv2);
+
+                boolean b1 = con.getBoolean("b", true);
+                if(b1){
+
+                    ImageLoader.getInstance().displayImage(data.get(i).getThumbnail_pic_s(),holder2.iv2);
+                }
                 break;
         }
         return view;
