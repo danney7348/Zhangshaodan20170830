@@ -15,9 +15,18 @@ import com.andy.library.ChannelBean;
 import com.bwie.text.adapter.MyApadter;
 import com.bwie.text.bean.CategoryBean;
 import com.bwie.text.bean.News;
+import com.bwie.text.fragment.CaijingFragment;
+import com.bwie.text.fragment.GuojiFragment;
+import com.bwie.text.fragment.GuoneiFragment;
+import com.bwie.text.fragment.JunshiFragment;
+import com.bwie.text.fragment.KejiFragment;
 import com.bwie.text.fragment.LeftFragment;
 import com.bwie.text.fragment.MyFragment;
 import com.bwie.text.fragment.RightFragment;
+import com.bwie.text.fragment.ShehuiFragment;
+import com.bwie.text.fragment.ShishangFragment;
+import com.bwie.text.fragment.TiyuFragment;
+import com.bwie.text.fragment.YuleFragment;
 import com.bwie.text.view.HorizontalScollTabhost;
 import com.google.gson.Gson;
 import com.kson.slidingmenu.SlidingMenu;
@@ -94,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initData() {
         fragmentList = new ArrayList<>();
         beans = new ArrayList<>();
+        /**
+         * ,top(头条，默认),shehui(社会),guonei(国内),
+         * guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+         */
         beans.add("头条");
         beans.add("娱乐");
         beans.add("社会");
@@ -102,14 +115,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         beans.add("财经");
         beans.add("时尚");
         beans.add("军事");
+        beans.add("国际");
+        beans.add("国内");
         fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
-        fragmentList.add(new MyFragment());
+        fragmentList.add(new YuleFragment());
+        fragmentList.add(new ShehuiFragment());
+        fragmentList.add(new TiyuFragment());
+        fragmentList.add(new KejiFragment());
+        fragmentList.add(new CaijingFragment());
+        fragmentList.add(new ShishangFragment());
+        fragmentList.add(new JunshiFragment());
+        fragmentList.add(new GuojiFragment());
+        fragmentList.add(new GuoneiFragment());
         mTabhost.diaplay(beans, fragmentList);
     }
 

@@ -180,12 +180,12 @@
             android:textColor="#363636"
             android:textSize="15dp" />
 
-        <ImageView
-            android:layout_width="100sp"
+        <Switch
+            android:id="@+id/switch_tuisong"
+            android:layout_width="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_height="30sp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/on" />
+            android:layout_alignParentRight="true" />
 
     </RelativeLayout>
 

@@ -11,13 +11,17 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 
 import com.bwie.text.LixianActivity;
 import com.bwie.text.MainActivity;
 import com.bwie.text.R;
 import com.bwie.text.utils.NetWorkInfoUtils;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 作者： 张少丹
@@ -31,6 +35,7 @@ public class RightFragment extends Fragment {
     private RelativeLayout lixianxiazai;
     private RelativeLayout notwifi;
     public static SharedPreferences sp;
+    private Switch tuisong;
 
     @Nullable
     @Override
@@ -42,7 +47,18 @@ public class RightFragment extends Fragment {
         }
         ImageView back = mRootView.findViewById(R.id.iv_right_fragment_back);
         lixianxiazai = mRootView.findViewById(R.id.rl_lixianxiazai);
+        tuisong = mRootView.findViewById(R.id.switch_tuisong);
 
+        tuisong.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    JPushInterface.resumePush(getContext());
+                }else{
+                    JPushInterface.stopPush(getContext());
+                }
+            }
+        });
         notwifi = mRootView.findViewById(R.id.rl_notWifi);
         notwifi.setOnClickListener(new View.OnClickListener() {
             @Override
