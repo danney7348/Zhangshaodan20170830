@@ -76,6 +76,9 @@ public class HorizontalScollTabhost extends LinearLayout implements ViewPager.On
         viewpager.addOnPageChangeListener(this);
     }
 
+    public void remove(){
+        layout_menu.removeAllViews();
+    }
     public void diaplay(List<String> list, List<Fragment> fragments) {
         this.list = list;
         this.fragmentList = fragments;

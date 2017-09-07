@@ -15,6 +15,7 @@ import com.andy.library.ChannelBean;
 import com.bwie.text.adapter.MyApadter;
 import com.bwie.text.bean.CategoryBean;
 import com.bwie.text.bean.News;
+import com.bwie.text.dao.NewsDao;
 import com.bwie.text.fragment.CaijingFragment;
 import com.bwie.text.fragment.GuojiFragment;
 import com.bwie.text.fragment.GuoneiFragment;
@@ -29,9 +30,13 @@ import com.bwie.text.fragment.TiyuFragment;
 import com.bwie.text.fragment.YuleFragment;
 import com.bwie.text.view.HorizontalScollTabhost;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.kson.slidingmenu.SlidingMenu;
 import com.kson.slidingmenu.app.SlidingFragmentActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ContentView;
@@ -63,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SlidingMenu menu;
     private ImageView jiahao;
     private List<ChannelBean> list;
+    private NewsDao dao;
+    private ChannelBean b;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,21 +80,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabhost = (HorizontalScollTabhost) findViewById(R.id.tabhost);
         //使用post请求
         initView();
-
+        dao = new NewsDao(this);
         initMenu();
         initData();
         jiahao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 list = new ArrayList<ChannelBean>();
-                ChannelBean channelBean;
-                for (int i = 0; i < beans.size(); i++) {
-                    if(beans.get(i).equals("体育")||beans.get(i).equals("娱乐")){
-                        channelBean = new ChannelBean(beans.get(i),true);
-                    }else{
-                        channelBean = new ChannelBean(beans.get(i),false);
+                String query = dao.query();
+                if(query == null){
+                    ChannelBean channelBean;
+                    for (int i = 0; i < beans.size(); i++) {
+                            channelBean = new ChannelBean(beans.get(i),true);
+                        list.add(channelBean);
                     }
-                    list.add(channelBean);
+                }else {
+                    try {
+                       JSONArray arr=new JSONArray(query);
+                        for (int i = 0; i <arr.length() ; i++) {
+                            JSONObject oo = (JSONObject) arr.get(i);
+                            String name = oo.getString("name");
+                            boolean isSelect = oo.getBoolean("isSelect");
+                            ChannelBean b=new ChannelBean(name,isSelect);
+                            list.add(b);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 ChannelActivity.startChannelActivity(MainActivity.this, list);
             }
@@ -103,10 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initData() {
         fragmentList = new ArrayList<>();
         beans = new ArrayList<>();
-        /**
-         * ,top(头条，默认),shehui(社会),guonei(国内),
-         * guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
-         */
         beans.add("头条");
         beans.add("娱乐");
         beans.add("社会");
@@ -151,6 +166,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tou_iv_shezhi:
                 menu.showSecondaryMenu();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 101){
+            String s = data.getExtras().getString("json");
+            System.out.println("s = " + s);
+            String query = dao.query();
+            if(query != null){
+                dao.clear();
+            }
+            beans.clear();
+            list.clear();
+            dao.insert(s);
+            List<Fragment> fragmentLists = new ArrayList<>();
+            try {
+                JSONArray arr = new JSONArray(s);
+                for (int i = 0; i < arr.length(); i++) {
+                    JSONObject oo = (JSONObject) arr.get(i);
+                    String name = oo.getString("name");
+                    boolean isSelect = oo.getBoolean("isSelect");
+                    if(isSelect){
+                        beans.add(name);
+                        fragmentLists.add(fragmentList.get(i));
+                        System.out.println("beans = " + beans);
+                    }
+                    System.out.println("beans =========== " + beans.toString());
+                }
+                mTabhost.remove();
+                mTabhost.diaplay(beans,fragmentLists);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
